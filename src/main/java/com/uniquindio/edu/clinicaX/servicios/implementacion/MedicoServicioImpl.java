@@ -2,7 +2,9 @@ package com.uniquindio.edu.clinicaX.servicios.implementacion;
 
 import com.uniquindio.edu.clinicaX.dto.medico.*;
 import com.uniquindio.edu.clinicaX.dto.ItemCitaDTO;
+import com.uniquindio.edu.clinicaX.model.Atencion;
 import com.uniquindio.edu.clinicaX.model.Cita;
+import com.uniquindio.edu.clinicaX.model.Paciente;
 import com.uniquindio.edu.clinicaX.repositorios.*;
 import com.uniquindio.edu.clinicaX.servicios.interfaces.MedicoServicio;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MedicoServicioImpl implements MedicoServicio {
 
-    private final PQRSRepo pqrsRepo;
-    private final MedicoRepo medicoRepo;
-    private final HorarioRepo horarioRepo;
     private final CitaRepo citaRepo;
-    private final CuentaRepo cuentaRepo;
-    private final MensajeRepo mensajeRepo;
-    private final PacienteRepo pacienteRepo;
+    private final AtencionRepo atencionRepo;
 
     @Override
     public List<ListarCitasPendientesDTO> listarCitasPendiente(int codigoMedico) throws Exception {
@@ -61,8 +58,33 @@ public class MedicoServicioImpl implements MedicoServicio {
     @Override
     public List<ListarHistorialAtencionesPacienteDTO> listarHistorialAtencionesPaciente(int codigoPaciente) throws Exception {
 
+        List<Atencion> listaAtencion = atencionRepo.findAll(); // select * from pqrs
+        List<ListarHistorialAtencionesPacienteDTO> respuesta = new ArrayList<>();
 
-        return null;
+        for (Atencion atencion: listaAtencion) {
+
+            respuesta.add(new ListarHistorialAtencionesPacienteDTO(
+                    atencion.getCodigo(),
+                    atencion.getCita().getPaciente().getCedula(),
+                    atencion.getCita().getPaciente().getNombre(),
+                    atencion.getTratamiento(),
+                    atencion.getNotasMedicas(),
+                    atencion.getDiagnostico(),
+                    atencion.getCita().getFechaCita()
+            ));
+        }
+        List<ListarHistorialAtencionesPacienteDTO> lista = listaAtencion.stream().map(atencion -> new ListarHistorialAtencionesPacienteDTO(
+
+                    atencion.getCodigo(),
+                    atencion.getCita().getPaciente().getCedula(),
+                    atencion.getCita().getPaciente().getNombre(),
+                    atencion.getTratamiento(),
+                    atencion.getNotasMedicas(),
+                    atencion.getDiagnostico(),
+                    atencion.getCita().getFechaCita()
+               )).toList();
+
+        return respuesta;
     }
 
     @Override
