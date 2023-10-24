@@ -2,29 +2,21 @@ package com.uniquindio.edu.clinicaX.model;
 
 import com.uniquindio.edu.clinicaX.enums.Ciudad;
 import com.uniquindio.edu.clinicaX.enums.Departamento;
+import com.uniquindio.edu.clinicaX.enums.EstadoUsuario;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
 
-@Entity
+@MappedSuperclass
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Usuario extends Cuenta implements Serializable {
-
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigo;
+public class Usuario extends Cuenta {
 
     @Column(nullable = false)
     private Ciudad ciudad;
-
-    @Column(nullable = false)
-    private Departamento departamento;
 
     @Column(nullable = false, unique = true, length = 20)
     private String cedula;
@@ -36,9 +28,9 @@ public class Usuario extends Cuenta implements Serializable {
     private String telefono;
 
     @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String urlFoto;
 
-    @Column(nullable = false, unique = true, length = 20)
-    private String estado;
+    @Column(nullable = false, length = 20)
+    private EstadoUsuario estado = EstadoUsuario.ACTIVO;
 }

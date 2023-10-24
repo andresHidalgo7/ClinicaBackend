@@ -4,6 +4,7 @@ import com.uniquindio.edu.clinicaX.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,12 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Paciente extends Usuario{
-
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigo;
+public class Paciente extends Usuario implements Serializable{
 
     @Column(nullable = false, length = 20)
     private LocalDate fecha_nacimiento;

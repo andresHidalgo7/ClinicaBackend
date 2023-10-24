@@ -1,7 +1,10 @@
 package com.uniquindio.edu.clinicaX.model;
 
+import com.uniquindio.edu.clinicaX.dto.medico.DiaLibreDTO;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -16,8 +19,13 @@ public class DiaLibre {
     private int codigo;
 
     @Column(nullable = false)
-    private String dia;
+    private LocalDate dia;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Medico medico;
+
+    public DiaLibre(DiaLibreDTO diaLibreDTO, Medico medico){
+        this.setDia(diaLibreDTO.fecha());
+        this.setMedico(medico);
+    }
 }

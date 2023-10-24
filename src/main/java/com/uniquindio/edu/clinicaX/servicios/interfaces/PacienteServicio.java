@@ -1,6 +1,7 @@
 package com.uniquindio.edu.clinicaX.servicios.interfaces;
 
 import com.uniquindio.edu.clinicaX.dto.*;
+import com.uniquindio.edu.clinicaX.dto.ItemCitaDTO;
 import com.uniquindio.edu.clinicaX.dto.RegistroPQRSDTO;
 import com.uniquindio.edu.clinicaX.dto.paciente.*;
 
@@ -14,11 +15,11 @@ public interface PacienteServicio {
 
     int actualizarCuentaPaciente(int codigo, RegistroPacienteDTO registroPacienteDTO)throws Exception;
 
-    String enviarLinkVerificacion(String email)throws Exception;
+    void enviarLinkVerificacion(String email)throws Exception;
 
-    String cambiarPassword(NuevaContraseniaTDO nuevaContraseniaTDO)throws Exception;
+    void cambiarPassword(NuevaContraseniaTDO nuevaContraseniaTDO)throws Exception;
 
-    int agendarCitas(RegistroCitaDTO registroCitaDTO) throws Exception;
+    DetalleCitaDTO agendarCitas(RegistroCitaDTO registroCitaDTO) throws Exception;
 
     int crearPqrs(RegistroPQRSDTO registroPQRSDTO)throws Exception;
 
@@ -28,6 +29,6 @@ public interface PacienteServicio {
 
     int responderPQRS(RespuestaDTO respuestaDTO) throws Exception;
 
-    List<ItemCitaDTO> listarCitasPaciente(int codigoPaciente) throws  Exception;
+   List<ItemCitaDTO> listarCitasPaciente(int codigoPaciente) throws  Exception;
 
 }

@@ -2,6 +2,7 @@ package com.uniquindio.edu.clinicaX.dto;
 
 import com.uniquindio.edu.clinicaX.enums.Especializacion;
 import com.uniquindio.edu.clinicaX.enums.EstadoCita;
+import com.uniquindio.edu.clinicaX.model.Cita;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
@@ -33,4 +34,19 @@ public record ItemCitaDTO(
         @Length (max = 80, message = "No puedes incluir mas de 80 caracteres")
         String motivo
 ) {
+
+        public ItemCitaDTO(Cita c){
+                this(
+                        c.getCodigo(),
+                        c.getPaciente().getCedula(),
+                        c.getPaciente().getNombre(),
+                        c.getMedico().getNombre(),
+                        c.getMedico().getEspecializacion(),
+                        c.getEstadoCita(),
+                        c.getFechaCita(),
+                        c.getMotivo()
+                );
+        }
 }
+
+

@@ -1,6 +1,7 @@
 package com.uniquindio.edu.clinicaX.dto.medico;
 
 import com.uniquindio.edu.clinicaX.enums.Especializacion;
+import com.uniquindio.edu.clinicaX.model.Cita;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
@@ -31,4 +32,19 @@ public record DetalleAtencionMedicoDTO(
         @Length (max = 80, message = "No puedes incluir mas de 80 caracteres")
         String diagnostico
 ) {
+    public DetalleAtencionMedicoDTO(Cita cita) {
+
+            this(
+                    cita.getAtencion().getCodigo(),
+                    cita.getPaciente().getNombre(),
+                    cita.getMedico().getNombre(),
+                    cita.getMedico().getEspecializacion(),
+                    cita.getFechaCita(),
+                    cita.getAtencion().getTratamiento(),
+                    cita.getAtencion().getNotasMedicas(),
+                    cita.getAtencion().getDiagnostico()
+            );
+    }
+
+
 }

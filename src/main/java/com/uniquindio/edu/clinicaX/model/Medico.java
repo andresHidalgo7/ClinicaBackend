@@ -13,10 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Medico extends  Usuario{
 
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigo;
 
     @Column(nullable = false)
     private Especializacion especializacion;

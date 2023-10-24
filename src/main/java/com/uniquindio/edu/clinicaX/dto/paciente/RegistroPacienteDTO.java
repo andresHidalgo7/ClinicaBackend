@@ -1,6 +1,7 @@
 package com.uniquindio.edu.clinicaX.dto.paciente;
 
 import com.uniquindio.edu.clinicaX.enums.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
@@ -36,7 +37,13 @@ public record RegistroPacienteDTO(
         @NotBlank
         TipoSangre tipoSangre,
         @NotBlank
-        String urlFoto
+        String urlFoto,
+        @NotBlank
+        @Email(message = "Ingrese una direccion de correo valida")
+        @Length(max = 80, message = "El correo debe tener maximo 80 caracteres")
+        String correo,
+        @NotBlank
+        String contrasenia
 ) {
 
 

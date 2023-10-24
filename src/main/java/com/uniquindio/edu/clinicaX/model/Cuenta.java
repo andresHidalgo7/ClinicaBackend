@@ -3,6 +3,7 @@ package com.uniquindio.edu.clinicaX.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Cuenta {
+public class Cuenta implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include

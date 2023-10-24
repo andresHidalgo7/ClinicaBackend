@@ -26,10 +26,10 @@ public class Mensaje {
     @Column(nullable = false, length = 100)
     private String contenido;
 
-    @Column(nullable = false, length = 100)
+    @Column( length = 100)
     private String tipo;
 
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     private String motivo;
 
     @OneToOne(fetch = FetchType.LAZY)

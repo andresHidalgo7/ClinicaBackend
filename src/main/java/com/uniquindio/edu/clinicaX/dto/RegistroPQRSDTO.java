@@ -1,5 +1,6 @@
 package com.uniquindio.edu.clinicaX.dto;
 
+import com.uniquindio.edu.clinicaX.enums.EstadoPQRS;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
@@ -16,6 +17,8 @@ public record RegistroPQRSDTO(
         int codigoPaciente,
         @NotBlank
         @Length(max = 50, message = "No puedes incluir mas de 50 caracteres")
-        String tipoPQRS
+        String tipoPQRS,
+
+        EstadoPQRS estadoPQRS
 ) {
 }

@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface MensajeRepo extends JpaRepository <Mensaje, Integer> {
 
-    List<Mensaje> findAllByPqrsCodigo(int codigoPqrs);
+    List<Mensaje> findAllByPqrCodigo(int codigoPqrs);
 
 }

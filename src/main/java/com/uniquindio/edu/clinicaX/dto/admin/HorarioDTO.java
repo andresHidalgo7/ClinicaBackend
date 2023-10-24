@@ -3,6 +3,8 @@ package com.uniquindio.edu.clinicaX.dto.admin;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
+import java.time.LocalTime;
+
 public record HorarioDTO(
 
         @NotBlank
@@ -10,9 +12,9 @@ public record HorarioDTO(
         String dia,
         @NotBlank
         @Length (max = 4, message = "No puedes incluir mas de 4 caracteres para la hora de inicio")
-        String horaInicio,
+        LocalTime horaInicio,
         @NotBlank
         @Length (max = 4, message = "No puedes incluir mas de 4 caracteres para la hora de salida")
-        String horaSalida
+        LocalTime horaSalida
 ) {
 }

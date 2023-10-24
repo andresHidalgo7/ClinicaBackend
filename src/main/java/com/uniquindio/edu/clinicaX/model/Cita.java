@@ -4,6 +4,7 @@ import com.uniquindio.edu.clinicaX.enums.EstadoCita;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cita {
+public class Cita implements Serializable{
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,4 +44,15 @@ public class Cita {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Paciente paciente;
+
+//
+
+    public Cita(LocalDateTime fechaCreacion,LocalDateTime  fechaCita, String motivo, EstadoCita estado, Medico medico, Paciente paciente) {
+        this.fechaCreacion = fechaCreacion;
+        this.fechaCita = fechaCita;
+        this.motivo = motivo;
+        this.estadoCita = estado;
+        this.medico = medico;
+        this.paciente = paciente;
+    }
 }

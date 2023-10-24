@@ -3,6 +3,8 @@ package com.uniquindio.edu.clinicaX.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalTime;
+
 @Entity
 @Getter
 @Setter
@@ -19,10 +21,10 @@ public class Horario {
     private String dia;
 
     @Column(nullable = false)
-    private String horaInicio;
+    private LocalTime horaInicio;
 
     @Column(nullable = false)
-    private String horaFin;
+    private LocalTime horaFin;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Medico medico;
